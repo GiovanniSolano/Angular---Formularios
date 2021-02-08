@@ -1,0 +1,24 @@
+<h4 class="mt-5">Formularios <small> Template </small></h4>
+<hr>
+
+<form autocomplete="off" #formRegistro="ngForm" (ngSubmit)="onSubmit(formRegistro)">
+    <div class="form-group">
+        <label>Nombre</label>
+        <input type="text" name="nombre" placeholder="Nombre" class="form-control" [class.is-invalid]="nombre.invalid && nombre.touched" required minlength="5" ngModel #nombre="ngModel">
+        <small class="form-text text-danger" *ngIf="nombre.invalid && nombre.touched">Ingrese al menos 5 letras</small>
+    </div>
+    <div class="form-group">
+        <label>Apellidos</label>
+        <input type="text" placeholder="Apellidos" #apellidos="ngModel" [ngClass]="{'is-invalid': apellidos.invalid && apellidos.touched}" required name="apellidos" class="form-control" ngModel>
+        <small class="form-text text-danger" *ngIf="apellidos.touched && apellidos.invalid">Ingresa tus apellidos</small>
+    </div>
+    <div class="form-group">
+        <label>Edad</label>
+        <input type="number" placeholder="Edad" [class.is-invalid]="edad.invalid && edad.touched" #edad="ngModel" required name="edad" class="form-control" ngModel>
+        <small class="form-text text-danger" *ngIf="edad.invalid && edad.touched">Ingresa tu edad</small>
+    </div>
+
+    <input type="submit" [disabled]="formRegistro.invalid" value="Enviar" class="btn btn-block btn-primary">
+</form>
+
+{{formRegistro.value | json}}
